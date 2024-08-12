@@ -12,7 +12,14 @@ for start_num in range(0, 250, 25):
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
     all_titles = soup.findAll('span', attrs={'class': 'title'})
-    for title in all_titles:
+    all_quotes = soup.findAll('span', attrs={'class': 'inq'})
+
+    # for title in all_titles:
+    #     title_string = title.string
+    #     if '/' not in title_string:
+    #         print(title.string)
+
+    for title, quote in zip(all_titles, all_quotes):
         title_string = title.string
         if '/' not in title_string:
-            print(title.string)
+            print('电影片名: ', title.string, "引言: ", quote.string)
